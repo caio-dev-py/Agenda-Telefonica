@@ -1,0 +1,41 @@
+{% extends "base.html" %}{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+
+    <form action="/auth/login" method="post" class="container">
+        {{ form.hidden_tag() }}
+
+        {{ form.email.label(class="form-label mt-2") }}
+        {{ form.email(class="form-control", required=false)}}
+        {% for erro in form.email.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.senha.label(class="form-label mt-2") }}
+        {{ form.senha(class="form-control", required=false)}}
+        {% for erro in form.senha.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% if msgs %}
+                {% for cat, msg in msgs %}
+                    <div class="alert alert-{{ cat }} alert-dismissible fade show mt-2">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {{ form.login(class="btn btn-primary mt-2") }}
+
+    </form>
+
+{% endblock %}

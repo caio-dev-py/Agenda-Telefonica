@@ -1,0 +1,26 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "caio-dev-py",email = "caio.dev.araujo@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flask (>=3.1.2,<4.0.0)",
+    "phonenumbers (>=9.0.13,<10.0.0)",
+    "flask-wtf (>=1.2.2,<2.0.0)",
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "flask-login (>=0.6.3,<0.7.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "email-validator (>=2.3.0,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "app", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

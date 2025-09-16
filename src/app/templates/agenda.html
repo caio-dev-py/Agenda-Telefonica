@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+
+    <form action="/adicionar_contato">
+        {{ form.hidden_tag() }}
+
+        {{ form.nome.label(class="form-label") }}
+        {{ form.nome(class="form-control", required=false) }}
+        {% for erro in form.nome.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control", required=false) }}
+        {% for erro in form.email.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.telefone.label(class="form-label") }}
+        {{ form.telefone(class="form-control", required=false) }}
+        {% for erro in form.telefone.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.salvar(class="btn btn-primary")}}
+    </form>
+
+{% endblock %}

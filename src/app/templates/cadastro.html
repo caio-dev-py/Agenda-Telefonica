@@ -1,0 +1,59 @@
+{% extends "base.html" %}{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+
+    <form action="/auth/cadastro" method="post" class="container">
+        {{ form.hidden_tag() }}
+
+        {{ form.nome.label(class="form-label mt-2") }}
+        {{ form.nome(class="form-control", required=false)}}
+        {% for erro in form.nome.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.email.label(class="form-label mt-2") }}
+        {{ form.email(class="form-control", required=false)}}
+        {% for erro in form.email.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.senha.label(class="form-label mt-2") }}
+        {{ form.senha(class="form-control", required=false)}}
+        {% for erro in form.senha.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {{ form.conf_senha.label(class="form-label mt-2") }}
+        {{ form.conf_senha(class="form-control", required=false)}}
+        {% for erro in form.conf_senha.errors %}
+            <div class="alert alert-danger alert-dismissible fade show mt-2">
+                {{ erro }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% if msgs %}
+                {% for cat, msg in msgs %}
+                    <div class="alert alert-{{ cat }} alert-dismissible fade show mt-2">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {{ form.cadastrar(class="btn btn-primary mt-2") }}
+
+    </form>
+
+{% endblock %}
