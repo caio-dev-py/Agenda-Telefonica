@@ -27,3 +27,6 @@ class AgendaForm(FlaskForm):
     email = StringField("E-mail", validators=[DataRequired(message="E-mail não pode estar vazio."),
                                               Email(message="E-mail inválido.")])
     salvar = SubmitField("Salvar")
+    
+class DeletarForm(FlaskForm):
+    deletar = SubmitField("Deletar")

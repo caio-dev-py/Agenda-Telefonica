@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form action="/adicionar_contato" method="post" class="container">
+    <form action="{{ action }}" method="post" class="container">
         {{ form.hidden_tag() }}
 
         {{ form.nome.label(class="form-label") }}

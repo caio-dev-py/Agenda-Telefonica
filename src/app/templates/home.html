@@ -1,5 +1,80 @@
-{% extends "base.html" %}{% block title %}Página Inicial{% endblock %}
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock %}
 
 {% block content %}
+
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% if msgs %}
+                {% for cat, msg in msgs %}
+                    <div class="alert alert-{{ cat }} alert-dismissible fade show mt-2">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+<main class="flex-grow-1">
+
+  <section class="text-center py-5 bg-light rounded shadow-sm">
+    <div class="container">
+      <h1 class="display-4 fw-bold text-primary">📞 Minha Agenda</h1>
+      <p class="lead text-secondary mt-3">
+        Organize seus contatos de forma simples, rápida e moderna.
+      </p>
+      <a href="/adicionar_contato" class="btn btn-warning btn-lg mt-4">
+        + Adicionar Contato
+      </a>
+    </div>
+  </section>
+
+  <section class="container mt-5">
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="card h-100 text-center p-3">
+          <div class="card-body">
+            <h5 class="card-title text-primary">✨ Simples</h5>
+            <p class="card-text text-secondary">
+              Adicione, edite e organize seus contatos de forma rápida e prática.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 text-center p-3">
+          <div class="card-body">
+            <h5 class="card-title text-warning">⚡ Rápido</h5>
+            <p class="card-text text-secondary">
+              Interface responsiva, leve e pensada para o seu dia a dia.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 text-center p-3">
+          <div class="card-body">
+            <h5 class="card-title text-danger">🔒 Seguro</h5>
+            <p class="card-text text-secondary">
+              Seus dados são protegidos e acessíveis apenas por você.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="text-center mt-5 py-5 bg-primary text-light rounded">
+    <div class="container">
+      <h2 class="fw-bold">Comece agora mesmo</h2>
+      <p class="lead mb-4">Gerencie seus contatos em um só lugar</p>
+      <a href="/agenda" class="btn btn-warning btn-lg">Ver Contatos</a>
+    </div>
+  </section>
+
+</main>
 
 {% endblock %}
