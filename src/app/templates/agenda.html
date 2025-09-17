@@ -2,37 +2,37 @@
 
 {% block content %}
 
-    <form action="/adicionar_contato">
-        {{ form.hidden_tag() }}
+    <div class="container">
+        <h3>Lista de contatos</h3>
+        
+        <a href="/adicionar_contato" class="btn btn-primary mt-3 mb-3"> + </a>
 
-        {{ form.nome.label(class="form-label") }}
-        {{ form.nome(class="form-control", required=false) }}
-        {% for erro in form.nome.errors %}
-            <div class="alert alert-danger alert-dismissible fade show mt-2">
-                {{ erro }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        {% endfor %}
+        {% if contatos %}
+            {% for contato in contatos %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Contato: {{ contato.nome }}</h5>
+                        <p>E-mail: {{ contato.email }}</p>
+                        <p>Telefone: {{ contato.telefone }}</p>
 
-        {{ form.email.label(class="form-label") }}
-        {{ form.email(class="form-control", required=false) }}
-        {% for erro in form.email.errors %}
-            <div class="alert alert-danger alert-dismissible fade show mt-2">
-                {{ erro }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        {% endfor %}
+                        <a href="" class="btn btn-warning">Editar</a>
+                        <a href="" class="btn btn-danger">Deletar</a>
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        {% endif %}
 
-        {{ form.telefone.label(class="form-label") }}
-        {{ form.telefone(class="form-control", required=false) }}
-        {% for erro in form.telefone.errors %}
-            <div class="alert alert-danger alert-dismissible fade show mt-2">
-                {{ erro }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        {% endfor %}
-
-        {{ form.salvar(class="btn btn-primary")}}
-    </form>
-
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% if msgs %}
+                {% for cat, msg in msgs %}
+                    <div class="alert alert-{{ cat }} alert-dismissible fade show mt-2">
+                        {{ msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
 {% endblock %}

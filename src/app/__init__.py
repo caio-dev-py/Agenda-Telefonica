@@ -24,8 +24,10 @@ def create_app():
     
     from src.app.routes.home import home_route
     from src.app.routes.auth import auth_route
+    from src.app.routes.user import user_route
     
     app.register_blueprint(home_route)
     app.register_blueprint(auth_route)
+    app.register_blueprint(user_route)
     
     return app
